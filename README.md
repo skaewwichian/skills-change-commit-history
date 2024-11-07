@@ -16,45 +16,41 @@ Accidental commits can be tricky to remove with Git. In this GitHub Skills cours
 </header>
 
 <!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
+  <<< Author notes: Step 3 >>>
+  Start this step by acknowledging the previous step.
+  Define terms and link to docs.github.com.
 -->
 
-## Step 1: Removing sensitive data
+## Step 3: Avoiding future commits with `.env`
 
-_Welcome to "Change commit history"! :wave:_
+_Nice work removing the file from entire history of the repository! :sparkles:_
 
-We'll start by working with `.env` files. These files usually contain sensitive content. For this course, we'll work on removing that file and all traces in the Git history. The first step is to remove the file from repository. We'll alter the history later.
+The steps we've taken so far ensure that any _new_ clones of the repository don't contain the sensitive data. But what about collaborators that may already have a copy of the repository? You should ask anyone with a copy of the repository to delete it and clone the repository fresh. In a real-life scenario, you'd also take [additional steps](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#fully-removing-the-data-from-github) to ensure no sensitive data is cached on GitHub.com.
 
-We'll assume you're using the command line, but you can complete the course using your preferred tooling.
+Now that we've mitigated the risk of exposing sensitive content, we'll be proactive and prevent its addition.
 
-**What is _sensitive content_?** Sensitive content is anything that is checked into your repository history that may put you or your organization at risk. This content usually comes in the form of credentials (i.e., passwords, access keys). The best practice for accidentally exposed sensitive content is to invalidate it (i.e., revoke a personal access token), completely remove it from all repository copies, and take measures to prevent future exposure.
+We'll now configure Git so it ignores a future addition of sensitive content by adding `.env` to `.gitignore`. If someone should that file to the local copy of their repository, it will remain only on the contributor's machine and won't be pushed to GitHub.
 
-See [Deleting a file on GitHub Docs](https://docs.github.com/en/repositories/working-with-files/managing-files/deleting-files-in-a-repository#deleting-a-file) if you need additional help removing a file.
+**What is `.gitignore`?** This special file allows us to tell Git naming patterns to ignore. You can read more about it in [Ignoring files on GitHub Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
 
-### :keyboard: Activity: Remove `.env` in the project root directory
+### :keyboard: Activity: Add `.env` to `.gitignore`
 
-1. Open your terminal of choice, clone this repository, and switch to your repository directory.
+1. Update the local copy of your repository to ensure you have the most recent version of the course files.
    ```shell
-   git clone <your-repository-url>
-   cd <your-repository-name>
+   git pull
    ```
-2. Delete `.env` from the root directory.
+2. Locate the file we added to the repository titled `.gitignore`.
+3. Add `.env` to the file.
+4. Stage, commit the file:
    ```shell
-   git rm .env
+   git add .gitignore
+   git commit -m "ignore .env files"
    ```
-3. Commit the removal of `.env`.
-   ```shell
-   git commit -m "remove .env file"
-   ```
-4. Push the removal to GitHub:
+5. Push the file to GitHub.com
    ```shell
    git push
    ```
-5. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
+6. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
 
 <footer>
 
